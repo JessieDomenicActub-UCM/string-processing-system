@@ -40,7 +40,6 @@ namespace StringProcessingApp
 
         public void ExtractSubstring(int start, int len)
         {
-
             if (start >= 0 && (start + len) <= CurrentText.Length)
             {
                 CurrentText = CurrentText.Substring(start, len);
