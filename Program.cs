@@ -1,10 +1,13 @@
-using StringProcessingApp.Views;
+using System;
 
-class Program
+namespace StringProcessingApp
 {
-    static void Main(string[] args)
+    class Program
     {
-        StringView view = new StringView();
-        view.Run();
+        static void Main(string[] args)
+        {
+            StringView myView = new StringView();
+            myView.Run();
+        }
     }
 }
