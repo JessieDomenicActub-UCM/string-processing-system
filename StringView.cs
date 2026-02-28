@@ -94,16 +94,16 @@ namespace StringProcessingApp
         {
             Console.Clear();
             Console.WriteLine("--- STRING PROCESSOR ---");
-            Console.WriteLine("1. Set Text");
-            Console.WriteLine("2. Show Text");
-            Console.WriteLine("3. To Uppercase");
-            Console.WriteLine("4. To Lowercase");
-            Console.WriteLine("5. Character Count");
-            Console.WriteLine("6. Find Word");
+            Console.WriteLine("1.Enter Text");
+            Console.WriteLine("2. View Current text");
+            Console.WriteLine("3. Convert to UPPERCASE");
+            Console.WriteLine("4. Convert to lowercase");
+            Console.WriteLine("5. Count Character");
+            Console.WriteLine("6. Check if it Contain Word");
             Console.WriteLine("7. Replace Word");
-            Console.WriteLine("8. Substring");
-            Console.WriteLine("9. Trim");
-            Console.WriteLine("10. Reset");
+            Console.WriteLine("8. Extract Substring");
+            Console.WriteLine("9. Trim Spaces");
+            Console.WriteLine("10. Reset Text");
             Console.WriteLine("11. Exit");
             Console.Write("Selection: ");
         }
