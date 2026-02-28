@@ -1,79 +1,111 @@
 using System;
-using StringProcessingApp.Services;
 
-namespace StringProcessingApp.Views
+namespace StringProcessingApp
 {
     public class StringView
     {
-        private readonly StringService _service = new StringService();
+        private StringService service = new StringService();
 
         public void Run()
         {
-            bool exit = false;
-            while (!exit)
+            bool running = true;
+
+            while (running)
             {
                 DisplayMenu();
-                string choice = Console.ReadLine() ?? "";
+                string choice = Console.ReadLine();
 
-                switch (choice)
+                if (choice == "1")
                 {
-                    case "1": 
-                        Console.Write("Enter text: ");
-                        _service.SetText(Console.ReadLine() ?? "");
-                        break;
-                    case "2": 
-                        Console.WriteLine($"Current Text: [{_service.CurrentText}]");
-                        break;
-                    case "3": _service.ToUpper(); break;
-                    case "4": _service.ToLower(); break;
-                    case "5": 
-                        Console.WriteLine($"Character Count: {_service.GetLength()}");
-                        break;
-                    case "6":
-                        Console.Write("Enter word to find: ");
-                        bool found = _service.ContainsWord(Console.ReadLine() ?? "");
-                        Console.WriteLine(found ? "Word found!" : "Word not found.");
-                        break;
-                    case "7":
-                        Console.Write("Word to replace: ");
-                        string oldW = Console.ReadLine() ?? "";
-                        Console.Write("Replace with: ");
-                        string newW = Console.ReadLine() ?? "";
-                        _service.ReplaceWord(oldW, newW);
-                        break;
-                    case "8":
-                        Console.Write("Start index: ");
-                        int start = int.Parse(Console.ReadLine() ?? "0");
-                        Console.Write("Length: ");
-                        int len = int.Parse(Console.ReadLine() ?? "0");
-                        _service.ExtractSubstring(start, len);
-                        break;
-                    case "9": _service.TrimSpaces(); break;
-                    case "10": _service.Reset(); break;
-                    case "11": exit = true; break;
-                    default: Console.WriteLine("Invalid option."); break;
+                    Console.Write("Enter your text: ");
+                    string input = Console.ReadLine();
+                    service.SetText(input);
                 }
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadKey();
+                else if (choice == "2")
+                {
+                    Console.WriteLine("Current Text: " + service.CurrentText);
+                }
+                else if (choice == "3")
+                {
+                    service.ToUpper();
+                    Console.WriteLine("Changed to UPPERCASE.");
+                }
+                else if (choice == "4")
+                {
+                    service.ToLower();
+                    Console.WriteLine("Changed to lowercase.");
+                }
+                else if (choice == "5")
+                {
+                    int len = service.GetLength();
+                    Console.WriteLine("Total characters: " + len);
+                }
+                else if (choice == "6")
+                {
+                    Console.Write("Enter word to search: ");
+                    string find = Console.ReadLine();
+                    if (service.ContainsWord(find)) {
+                        Console.WriteLine("Found it!");
+                    } else {
+                        Console.WriteLine("Not found.");
+                    }
+                }
+                else if (choice == "7")
+                {
+                    Console.Write("Old word: ");
+                    string oldW = Console.ReadLine();
+                    Console.Write("New word: ");
+                    string newW = Console.ReadLine();
+                    service.ReplaceWord(oldW, newW);
+                }
+                else if (choice == "8")
+                {
+                    Console.Write("Start index: ");
+                    int start = int.Parse(Console.ReadLine());
+                    Console.Write("Length: ");
+                    int len = int.Parse(Console.ReadLine());
+                    service.ExtractSubstring(start, len);
+                }
+                else if (choice == "9")
+                {
+                    service.TrimSpaces();
+                    Console.WriteLine("Spaces removed.");
+                }
+                else if (choice == "10")
+                {
+                    service.Reset();
+                    Console.WriteLine("Text reset to original.");
+                }
+                else if (choice == "11")
+                {
+                    running = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice, try again.");
+                }
+
+                Console.WriteLine("\nPress enter to continue...");
+                Console.ReadLine();
             }
         }
 
         private void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("--- String Processing System ---");
-            Console.WriteLine("1. Enter Text");
-            Console.WriteLine("2. View Current Text");
-            Console.WriteLine("3. Convert to UPPERCASE");
-            Console.WriteLine("4. Convert to lowercase");
-            Console.WriteLine("5. Count Characters");
-            Console.WriteLine("6. Check if Contains Word");
+            Console.WriteLine("--- STRING PROCESSOR ---");
+            Console.WriteLine("1. Set Text");
+            Console.WriteLine("2. Show Text");
+            Console.WriteLine("3. To Uppercase");
+            Console.WriteLine("4. To Lowercase");
+            Console.WriteLine("5. Character Count");
+            Console.WriteLine("6. Find Word");
             Console.WriteLine("7. Replace Word");
-            Console.WriteLine("8. Extract Substring");
-            Console.WriteLine("9. Trim Spaces");
-            Console.WriteLine("10. Reset Text");
+            Console.WriteLine("8. Substring");
+            Console.WriteLine("9. Trim");
+            Console.WriteLine("10. Reset");
             Console.WriteLine("11. Exit");
-            Console.Write("\nSelect an option: ");
+            Console.Write("Selection: ");
         }
     }
 }
